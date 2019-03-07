@@ -11,7 +11,7 @@ import java.util.TreeMap;
 
 /**
  *
- * @author Luis Perez Aju
+ * @author Luis Perez Aju && Francisco Rosal
  */
 public class Fac {
     public Fac(){

@@ -7,7 +7,7 @@ package hdt6;
 
 /**
  *
- * @author Luis Perez Aju
+ * @author Luis Perez Aju && Francisco Rosal
  */
 public class Coleccion {
     
