@@ -19,7 +19,8 @@ import java.util.stream.Stream;
  * @author Luis Perez Aju && Francisco Rosal
  */
 public class HDT6 {
-
+    private static String cartaParam;
+    
     /**
      * @param args the command line arguments
      */
@@ -31,6 +32,8 @@ public class HDT6 {
         Coleccion cartasTotales;
         Coleccion coleccion;
         Boolean continuar = true;
+        Coleccion metodo = new Coleccion();
+        
         
         System.out.println("Ingrese la implementacion que desea usar: ");
         System.out.println("1. HashMap");
@@ -75,16 +78,56 @@ public class HDT6 {
                 
                 if (opcion.equals("1")) {
                     //TODO
+                    
+                    continuar = true;
                 } else if (opcion.equals("2")) {
                     //TODO
+                    System.out.println("Ingrese el nombre de la carta ");
+                    cartaParam = read.nextLine();
+                    cartaParam = read.nextLine();
+                    String buscar = metodo.buscar(cartaParam, mapa);
+                    System.out.println(buscar);
+                    continuar = true;
                 } else if (opcion.equals("3")) {
                     //TODO
+                    System.out.println("Ingrese el nombre de la carta que desea buscar:");
+                    cartaParam = read.nextLine();
+                    cartaParam = read.nextLine();
+                    String search = metodo.buscar(cartaParam, mapa);
+                     Carta res = metodo.getCarta(cartaParam, mapa);
+                    if (res!=null){
+                        if(metodo.cartaExiste(biblioteca, res)){ 
+                            //ya existe la carta
+                            //entonces solo agregue uno a la cantidad.
+                            int pos = biblioteca.indexOf(res);
+                            biblioteca.get(pos).setCantidad(biblioteca.get(pos).getCantidad() + 1);
+                        }else{
+                            res.setCantidad(1);
+                            biblioteca.add(res);
+                        }
+                        System.out.println("Carta agregada exitosamente.");
+                    } else {
+                        System.out.println("Esta carta no existe.");
+                        
+                       }
+                    
+                    System.out.println(buscar);
+                    
+                    
+                    
+                    continuar = true;
                 } else if (opcion.equals("4")) {
                     //TODO
+                    
+                    continuar = true;
                 } else if (opcion.equals("5")) {
                     //TODO
+                    
+                    continuar = true;
                 } else if (opcion.equals("6")) {
                     //TODO
+                    
+                    continuar = true;
                 } else if (opcion.equals("7")) {
                     continuar = false;
                 }
