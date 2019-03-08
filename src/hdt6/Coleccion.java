@@ -148,4 +148,18 @@ public class Coleccion {
         
     }
      
+     public boolean cartaExiste(ArrayList<Carta> cartas, Carta res){ 
+        boolean cardEx = false;
+        
+        
+        for(Carta c : cartas){ 
+            if(c.getNombre().equals(res.getNombre())){
+                cardEx = true;
+                break;
+            }
+        }
+        
+        return cardEx;
+    }
+     
 }

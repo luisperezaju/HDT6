@@ -33,7 +33,7 @@ public class HDT6 {
         Coleccion coleccion;
         Boolean continuar = true;
         Coleccion metodo = new Coleccion();
-        
+        ArrayList<Carta> biblioteca = new ArrayList<>();
         
         System.out.println("Ingrese la implementacion que desea usar: ");
         System.out.println("1. HashMap");
@@ -93,7 +93,7 @@ public class HDT6 {
                     System.out.println("Ingrese el nombre de la carta que desea buscar:");
                     cartaParam = read.nextLine();
                     cartaParam = read.nextLine();
-                    String search = metodo.buscar(cartaParam, mapa);
+                    String buscar = metodo.buscar(cartaParam, mapa);
                      Carta res = metodo.getCarta(cartaParam, mapa);
                     if (res!=null){
                         if(metodo.cartaExiste(biblioteca, res)){ 
