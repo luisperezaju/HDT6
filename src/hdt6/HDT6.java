@@ -19,21 +19,19 @@ import java.util.stream.Stream;
  * @author Luis Perez Aju && Francisco Rosal
  */
 public class HDT6 {
-    private static String cartaParam;
+    //private static String cartaParam;
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         Scanner read = new Scanner(System.in);
         String tipoM;
-        Map mapa;
-        Coleccion cartasTotales;
-        Coleccion coleccion;
+        Map mapa1;
+        Map mapa2;
+        Coleccion cartasTotales =  new Coleccion();
+        Coleccion coleccion = new Coleccion();
         Boolean continuar = true;
-        Coleccion metodo = new Coleccion();
-        ArrayList<Carta> biblioteca = new ArrayList<>();
         
         System.out.println("Ingrese la implementacion que desea usar: ");
         System.out.println("1. HashMap");
@@ -41,12 +39,11 @@ public class HDT6 {
         System.out.println("3. LinkedHashMap");
         tipoM = read.next();
         
-        mapa = Fac.obtenerMap(tipoM);
-        if (mapa != null){
-            cartasTotales = new Coleccion();
-            cartasTotales.asignarMapa(mapa);
-            coleccion = new Coleccion();
-            coleccion.asignarMapa(mapa);
+        mapa1 = Fac.obtenerMap(tipoM);
+        mapa2 = Fac.obtenerMap(tipoM);
+        if (mapa1 != null && mapa2 != null){
+            cartasTotales.asignarMapa(mapa1);
+            coleccion.asignarMapa(mapa2);
             
             //Leer el archivo
             ArrayList<String> cartas = new ArrayList<>();
@@ -59,11 +56,9 @@ public class HDT6 {
             }
 
             for (String c: cartas) {
-                System.out.println(c);
-                String[] cartaInfo = c.split("|");
-                cartasTotales.agregarCarta(cartaInfo[0], cartaInfo[1]);
+                String[] cartaInfo = c.split("[|]");
+                cartasTotales.crearAgregarCarta(cartaInfo[0], cartaInfo[1]);
             }
-            
             
             while(continuar) {
                 System.out.println("Escoja un numero: ");
@@ -77,67 +72,33 @@ public class HDT6 {
                 String opcion = read.next();
                 
                 if (opcion.equals("1")) {
-                    //TODO
-                    System.out.println("Ingrese el nombre de la carta que desea buscar:");
-                    cartaParam = read.nextLine();
-                    cartaParam = read.nextLine();
-                    String buscar = metodo.buscar(cartaParam, mapa);
-                     Carta res = metodo.getCarta(cartaParam, mapa);
-                    if (res!=null){
-                        if(metodo.cartaExiste(biblioteca, res)){ 
-                           
-                            int pos = biblioteca.indexOf(res);
-                            biblioteca.get(pos).setCantidad(biblioteca.get(pos).getCantidad() + 1);
-                        }else{
-                            res.setCantidad(1);
-                            biblioteca.add(res);
-                        }
-                        System.out.println("Carta agregada exitosamente.");
+                    System.out.println("Ingrese el nombre de la carta que desea agregar:");
+                    String agregarCarta = read.next();
+                    
+                    Boolean existe = cartasTotales.cartaExiste(agregarCarta);
+                    
+                    if (existe) {
+                        Carta carta = cartasTotales.getCarta(agregarCarta);
+                        coleccion.agregarCarta(carta);
                     } else {
                         System.out.println("Esta carta no existe.");
-                        
-                       }
+                    }
                     
-                    System.out.println(buscar);
-                    
-                    
-                    
-                    
-                    continuar = true;
                 } else if (opcion.equals("2")) {
-                    //TODO
-                     System.out.println("Ingrese nombre de carta para consultar el tipo de carta correspondiente:");
-                    String query= read.nextLine();
-                    metodo.darTipoPorNombre(query, mapa);
+                    System.out.println("Ingrese nombre de carta para consultar el tipo de carta:");
+                    String query = read.nextLine();
+                    System.out.println(query);
+                    System.out.println(cartasTotales.darTipoPorNombre(query));
                     
-                    
-                    System.out.println("Ingrese el nombre de la carta ");
-                    cartaParam = read.nextLine();
-                    cartaParam = read.nextLine();
-                    String buscar = metodo.buscar(cartaParam, mapa);
-                    System.out.println(buscar);
-                    continuar = true;
                 } else if (opcion.equals("3")) {
-                    //TODO
-                     metodo.mostrarCartas(biblioteca);
-                     continuar = true;
+                    coleccion.mostrarTodasLasCartas();
                 } else if (opcion.equals("4")) {
-                    //TODO
-                    ArrayList<Carta> sorted = metodo.sortMisCartas(biblioteca);
-                    metodo.mostrarMisCartas(sorted);
-                    
-                    continuar = true;
+                    coleccion.mostrarCartasPorTipo();
                 } else if (opcion.equals("5")) {
-                    //TODO
-                     metodo.mostrarTodasLasCartas(mapa);
-                    
-                    continuar = true;
+                    cartasTotales.mostrarTodasLasCartas();
                 } else if (opcion.equals("6")) {
-                    //TODO
-                    Map<String, Carta> sortedMF=metodo.sortThots(mapa, tipoM);
-                    metodo.mostrarTodasLasCartas(sortedMF);
-                    
-                    continuar = true;
+                    Map<String, Carta> sortedMF = coleccion.sortThots(tipoM);
+                    cartasTotales.mostrarCartasPorTipo();
                 } else if (opcion.equals("7")) {
                     continuar = false;
                 }
