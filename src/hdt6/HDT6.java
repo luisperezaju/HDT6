@@ -33,7 +33,7 @@ public class HDT6 {
         Coleccion coleccion;
         Boolean continuar = true;
         Coleccion metodo = new Coleccion();
-        
+        ArrayList<Carta> biblioteca = new ArrayList<>();
         
         System.out.println("Ingrese la implementacion que desea usar: ");
         System.out.println("1. HashMap");
@@ -78,27 +78,14 @@ public class HDT6 {
                 
                 if (opcion.equals("1")) {
                     //TODO
-                    
-                    continuar = true;
-                } else if (opcion.equals("2")) {
-                    //TODO
-                    System.out.println("Ingrese el nombre de la carta ");
-                    cartaParam = read.nextLine();
-                    cartaParam = read.nextLine();
-                    String buscar = metodo.buscar(cartaParam, mapa);
-                    System.out.println(buscar);
-                    continuar = true;
-                } else if (opcion.equals("3")) {
-                    //TODO
                     System.out.println("Ingrese el nombre de la carta que desea buscar:");
                     cartaParam = read.nextLine();
                     cartaParam = read.nextLine();
-                    String search = metodo.buscar(cartaParam, mapa);
+                    String buscar = metodo.buscar(cartaParam, mapa);
                      Carta res = metodo.getCarta(cartaParam, mapa);
                     if (res!=null){
                         if(metodo.cartaExiste(biblioteca, res)){ 
-                            //ya existe la carta
-                            //entonces solo agregue uno a la cantidad.
+                           
                             int pos = biblioteca.indexOf(res);
                             biblioteca.get(pos).setCantidad(biblioteca.get(pos).getCantidad() + 1);
                         }else{
@@ -115,17 +102,40 @@ public class HDT6 {
                     
                     
                     
+                    
                     continuar = true;
+                } else if (opcion.equals("2")) {
+                    //TODO
+                     System.out.println("Ingrese nombre de carta para consultar el tipo de carta correspondiente:");
+                    String query= read.nextLine();
+                    metodo.darTipoPorNombre(query, mapa);
+                    
+                    
+                    System.out.println("Ingrese el nombre de la carta ");
+                    cartaParam = read.nextLine();
+                    cartaParam = read.nextLine();
+                    String buscar = metodo.buscar(cartaParam, mapa);
+                    System.out.println(buscar);
+                    continuar = true;
+                } else if (opcion.equals("3")) {
+                    //TODO
+                     metodo.mostrarCartas(biblioteca);
+                     continuar = true;
                 } else if (opcion.equals("4")) {
                     //TODO
+                    ArrayList<Carta> sorted = metodo.sortMisCartas(biblioteca);
+                    metodo.mostrarMisCartas(sorted);
                     
                     continuar = true;
                 } else if (opcion.equals("5")) {
                     //TODO
+                     metodo.mostrarTodasLasCartas(mapa);
                     
                     continuar = true;
                 } else if (opcion.equals("6")) {
                     //TODO
+                    Map<String, Carta> sortedMF=metodo.sortThots(mapa, tipoM);
+                    metodo.mostrarTodasLasCartas(sortedMF);
                     
                     continuar = true;
                 } else if (opcion.equals("7")) {

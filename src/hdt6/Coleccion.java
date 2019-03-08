@@ -76,7 +76,7 @@ public class Coleccion {
     }
     
     
-      public ArrayList<Carta> sortMyCards(ArrayList<Carta> biblioteca){ 
+      public ArrayList<Carta> sortMisCartas(ArrayList<Carta> biblioteca){ 
         /*List<Card> cards = new ArrayList<Card>();
         Card card;
         
@@ -129,7 +129,11 @@ public class Coleccion {
     }
     
     
-
+    public void mostrarTodasLasCartas(Map<String, Carta> mapG){ 
+        for (Map.Entry<String, Carta> entry : mapG.entrySet()){ 
+                    System.out.println("Nombre de carta: " + entry.getKey() + " Tipo de Carta: " + entry.getValue().getTipo());
+        }
+    }
      
      public void mostrarCartas(ArrayList<Carta> biblioteca){ 
         System.out.println("Sus cartas son: ");
@@ -138,14 +142,35 @@ public class Coleccion {
         }
     }
      
-     public void sortCartas(Map<String, Carta> mapG){
-        for (Map.Entry<String, Carta> entry : mapG.entrySet()){ 
+     public void sortCartas(Map<String, Carta> mapa){
+        for (Map.Entry<String, Carta> entry : mapa.entrySet()){ 
             if(entry.getValue().getTipo().equals("Trampa")){
                 
             }
                
         }    
         
+    }
+     
+     public boolean cartaExiste(ArrayList<Carta> cartas, Carta res){ 
+        boolean cardEx = false;
+        
+        
+        for(Carta c : cartas){ 
+            if(c.getNombre().equals(res.getNombre())){
+                cardEx = true;
+                break;
+            }
+        }
+        
+        return cardEx;
+    }
+     
+     public void mostrarMisCartas(ArrayList<Carta> biblioteca){ 
+        System.out.println("Sus cartas son: ");
+        for(Carta c : biblioteca){ 
+            System.out.println("Nombre de carta: " + c.getNombre() + " Tipo de Carta: " + c.getTipo() + " Cantidad: " + c.getCantidad());
+        }
     }
      
 }
