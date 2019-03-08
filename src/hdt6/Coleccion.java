@@ -5,10 +5,21 @@
  */
 package hdt6;
 
+import java.util.Map;
+
 /**
  *
  * @author Luis Perez Aju && Francisco Rosal
  */
 public class Coleccion {
+    Map<String, String> cartas;
+    
+    public void asignarMapa(Map mapa){
+        this.cartas = mapa;
+    }
+    
+    public void agregarCarta(String nombre, String tipo){
+        cartas.put(nombre, tipo);        
+    }
     
 }
