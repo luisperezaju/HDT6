@@ -19,8 +19,6 @@ import java.util.stream.Stream;
  * @author Luis Perez Aju && Francisco Rosal
  */
 public class HDT6 {
-    //private static String cartaParam;
-    
     /**
      * @param args the command line arguments
      */
@@ -73,7 +71,8 @@ public class HDT6 {
                 
                 if (opcion.equals("1")) {
                     System.out.println("Ingrese el nombre de la carta que desea agregar:");
-                    String agregarCarta = read.next();
+                    read.nextLine();
+                    String agregarCarta = read.nextLine();
                     
                     Boolean existe = cartasTotales.cartaExiste(agregarCarta);
                     
@@ -86,6 +85,7 @@ public class HDT6 {
                     
                 } else if (opcion.equals("2")) {
                     System.out.println("Ingrese nombre de carta para consultar el tipo de carta:");
+                    read.nextLine();
                     String query = read.nextLine();
                     System.out.println(query);
                     System.out.println(cartasTotales.darTipoPorNombre(query));
@@ -97,7 +97,6 @@ public class HDT6 {
                 } else if (opcion.equals("5")) {
                     cartasTotales.mostrarTodasLasCartas();
                 } else if (opcion.equals("6")) {
-                    Map<String, Carta> sortedMF = coleccion.sortThots(tipoM);
                     cartasTotales.mostrarCartasPorTipo();
                 } else if (opcion.equals("7")) {
                     continuar = false;

@@ -73,7 +73,7 @@ public class Coleccion {
         System.out.println("");
         System.out.println("Las cartas son: ");
         for (Map.Entry<String, Carta> entry : cartas.entrySet()){ 
-                    System.out.println("Carta: " + entry.getKey() + " Tipo: " + entry.getValue().getTipo() + " Cantidad: " + entry.getValue().getCantidad());
+            System.out.println("Carta: " + entry.getKey() + " Tipo: " + entry.getValue().getTipo() + " Cantidad: " + entry.getValue().getCantidad());
         }
         System.out.println("");
     }
@@ -90,32 +90,29 @@ public class Coleccion {
     }
     
     public void mostrarCartasPorTipo(){
+        String hechizos = "";
+        String trampas = "";
+        String monstruos = "";
         System.out.println("");
         System.out.println("Las cartas son: ");
         for (Map.Entry<String, Carta> entry : cartas.entrySet()){ 
-            System.out.println("Carta: " + entry.getKey() + " Tipo: " + entry.getValue().getTipo() + " Cantidad: " + entry.getValue().getCantidad());
+            if (entry.getValue().getTipo().equals("Hechizo")) {
+                hechizos += "Carta: " + entry.getKey() + " Tipo: " + entry.getValue().getTipo() + " Cantidad: " + entry.getValue().getCantidad() + "\n";
+            } else if (entry.getValue().getTipo().equals("Trampa")) {
+                trampas += "Carta: " + entry.getKey() + " Tipo: " + entry.getValue().getTipo() + " Cantidad: " + entry.getValue().getCantidad() + "\n";
+            } else if (entry.getValue().getTipo().equals("Monstruo")) {
+                monstruos += "Carta: " + entry.getKey() + " Tipo: " + entry.getValue().getTipo() + " Cantidad: " + entry.getValue().getCantidad() + "\n";
+            }
+            
         }
+        
+        System.out.println("Hechizos: ");
+        System.out.println(hechizos);
+        System.out.println("Trampa: ");
+        System.out.println(trampas);
+        System.out.println("Monstruos: ");
+        System.out.println(monstruos);
         System.out.println("");
-    }
-    
-    public Map<String, Carta> sortThots(String opt){
-
-        List<Map.Entry<String, Carta>> list = new LinkedList<Map.Entry<String, Carta>>(
-                cartas.entrySet());
-         
-        Collections.sort(list, new Comparator<Map.Entry<String, Carta>>() {
-            @Override
-            public int compare(Map.Entry<String, Carta> o1, Map.Entry<String, Carta> o2) {
-                return o1.getValue().getTipo().compareTo(o2.getValue().getTipo());
-            }                
-        });
-     
-        Map<String, Carta> x = new LinkedHashMap<String, Carta>();
-        for(Map.Entry<String, Carta> item : list){
-            x.put(item.getKey(), item.getValue());
-        }
-        return x;         
-    
     }
     
 }
