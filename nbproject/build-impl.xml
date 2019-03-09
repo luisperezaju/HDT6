@@ -291,7 +291,7 @@ is divided into following sections:
           <compilerarg path="@{apgeneratedsrcdir}"/>  
           <compilerarg line="${ap.proc.none.internal}"/>  
           <customize/> 
-        </javac> hj
+        </javac>
       </sequential> 
     </macrodef> 
   </target>  
